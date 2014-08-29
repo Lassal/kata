@@ -113,7 +113,7 @@ namespace Test.br.com.lassal.Kata
             IBinarySearch s = new BinarySearchFirstImpl();
 
             Assert.AreEqual(99998, s.Chop(33333, testSet));
-            Assert.AreEqual(6, s.Chop(3, testSet));
+            Assert.AreEqual(8, s.Chop(3, testSet));
         }
     }
 }
