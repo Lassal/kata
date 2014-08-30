@@ -60,10 +60,19 @@ namespace Test.br.com.lassal.Kata
         //
         #endregion
 
+        private IBinarySearch BinarySearch
+        {
+            get
+            {
+                return new BinarySearchStats(new BinarySearchFirstImpl());
+                    //SequentialSearch_SecImpl();
+            }
+        }
+
         [TestMethod]
         public void TestBinarySearch()
         {
-            IBinarySearch s = new BinarySearchFirstImpl();
+            IBinarySearch s = this.BinarySearch;
 
             int[] emptySet = null;
             int[] oneSet = {1};
@@ -93,6 +102,9 @@ namespace Test.br.com.lassal.Kata
             Assert.AreEqual(-1, s.Chop(6, fourSet));
             Assert.AreEqual(-1, s.Chop(8, fourSet));
 
+            BinarySearchStats stats = (BinarySearchStats)s;
+
+            Console.WriteLine("Tempo medio de busca: {0}, num de buscas {1}", stats.AverageSearchTime, stats.NumberOfSearchs);
         }
 
         [TestMethod]
@@ -100,20 +112,18 @@ namespace Test.br.com.lassal.Kata
         {
             int[] testSet = new int[100000];
 
-            for (int i = 0,j=1; i < 100000; i++)
+            for (int i = 0; i < 100000; i++)
             {
-                //testSet[i] = i+1;
-                testSet[i] = j;
-                if (i > 0 && (i % 3 == 0))
-                {
-                    j++;
-                }
+                testSet[i] = i+1;
             }
 
-            IBinarySearch s = new BinarySearchFirstImpl();
+            IBinarySearch s = this.BinarySearch;
 
-            Assert.AreEqual(99998, s.Chop(33333, testSet));
-            Assert.AreEqual(8, s.Chop(3, testSet));
+            Assert.AreEqual(99998, s.Chop(99999, testSet));
+            Assert.AreEqual(8, s.Chop(9, testSet));
+
+            BinarySearchStats stats = (BinarySearchStats)s;
+            Console.WriteLine("Tempo medio de busca: {0}, num de buscas {1}", stats.AverageSearchTime, stats.NumberOfSearchs);
         }
     }
 }

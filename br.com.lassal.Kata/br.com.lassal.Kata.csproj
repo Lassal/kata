@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Kata02\BinarySearchFirstImpl.cs" />
+    <Compile Include="Kata02\BinarySearchStats.cs" />
     <Compile Include="Kata02\IBinarySearch.cs" />
+    <Compile Include="Kata02\SequentialSearch_SecImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
